@@ -1,11 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+
+  const [numero, setNumero] = useState(0)
+
+  useEffect(()=>{
+    if(numero % 3 == 0){
+      console.log(numero)
+    }
+  }, [numero]);
+
+  const adicionar = () =>{
+    setNumero(numero + 1)
+  };
+
+  const diminuir = () =>{
+    setNumero(numero - 1)
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>Numero: {numero}</Text>
+      <Button onPress={adicionar} title='adicionar'/>
+      <Button onPress={diminuir} title='diminuir'/>
     </View>
   );
 }
